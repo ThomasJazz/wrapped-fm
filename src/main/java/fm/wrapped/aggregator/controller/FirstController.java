@@ -4,14 +4,10 @@ package fm.wrapped.aggregator.controller;
 import fm.wrapped.aggregator.entity.*;
 
 // 3rd party imports
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/sample-endpoint")
+@RequestMapping("/sample-api")
 public class FirstController {
 
     @GetMapping("/get-welcome-message")
@@ -20,8 +16,14 @@ public class FirstController {
         return "Hello, world";
     }
 
-    @PostMapping("/post-data")
+    @PostMapping("/add-data")
     public void addData(@RequestBody SpotifyListen listen)
+    {
+
+    }
+
+    @PutMapping("/add-data")
+    public void updateSomething(@RequestBody SpotifyListen listen)
     {
 
     }
