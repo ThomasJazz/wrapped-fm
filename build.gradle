@@ -17,6 +17,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.7.0'
 	implementation 'org.postgresql:postgresql:42.3.5'
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.13.3'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
