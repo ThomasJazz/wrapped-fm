@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExampleController {
 
     @GetMapping
-    public String Test()
+    public ClassExample Test()
     {
         ClassExample shit = new ClassExample("fuck");
-        return "Hello, world";
+        return shit;
     }
 }
