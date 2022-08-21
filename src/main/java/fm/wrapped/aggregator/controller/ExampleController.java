@@ -15,7 +15,7 @@ import fm.wrapped.aggregator.example.ExampleClass;
 
 /********************* PUBLIC PACKAGES *********************/
 import com.fasterxml.jackson.core.*;
-
+import io.github.cdimascio.dotenv.Dotenv;
 
 /********************* PREBUILT PACKAGES *********************/
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+
 
 
 
@@ -43,6 +45,10 @@ public class ExampleController {
     @GetMapping(value = "ex-get")
     public ExampleClass GetTest(@RequestParam(value = "username") String someUser)
     {
+        // Dotenv dotenv = Dotenv.load();
+        Dotenv dotenv = Dotenv.load();
+
+        System.out.println(dotenv.get("test"));
 
         ExampleClass myClass = new ExampleClass(someUser);
         return myClass;
