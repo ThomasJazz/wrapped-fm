@@ -14,6 +14,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.net.http.HttpResponse;
 
 import org.springframework.http.MediaType;
 /********************* PREBUILT PACKAGES *********************/
