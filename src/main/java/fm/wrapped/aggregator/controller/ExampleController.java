@@ -10,23 +10,22 @@ CreatedDate: 2022-08-21
 
 /********************* INTERNAL PACKAGES *********************/
 package fm.wrapped.aggregator.controller;
-import fm.wrapped.aggregator.example.ExampleClass;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse.BodyHandlers;
+import java.net.http.HttpResponse;
 
-
-/********************* PUBLIC PACKAGES *********************/
-import com.fasterxml.jackson.core.*;
-import io.github.cdimascio.dotenv.Dotenv;
-
+import org.springframework.http.MediaType;
 /********************* PREBUILT PACKAGES *********************/
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
 
+import fm.wrapped.aggregator.example.ExampleClass;
+import io.github.cdimascio.dotenv.Dotenv;
 
 
 
@@ -61,5 +60,26 @@ public class ExampleController {
 
         ExampleClass myClass = new ExampleClass();
         return myClass;
+    }
+
+
+    @GetMapping(value = "ex-text")
+    public String ApiCallingApi() {
+        HttpClient client = HttpClient.newHttpClient();
+        System.out.println("1");
+        HttpRequest request = HttpRequest.newBuilder()
+            .uri(URI.create("http://localhost:8081/example-path/ex-get?username=hello"))
+            .GET()
+            .build();
+
+        System.out.println("2");
+        var x = client.sendAsync(request, BodyHandlers.ofString())
+            .thenApply(HttpResponse::body)
+            .thenAccept(System.out::println)
+            .join();System.out.println("2");
+
+        System.out.println("3");
+
+        return "hello";
     }
 }
