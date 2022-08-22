@@ -7,13 +7,13 @@ import fm.wrapped.aggregator.entity.*;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/sample-api")
-public class FirstController {
+@RequestMapping("/user")
+public class UserController {
 
-    @GetMapping("/get-welcome-message")
-    public String HelloWorld()
+    @PostMapping("/add")
+    public void addUserAccount(@RequestBody UserAccount account)
     {
-        return "Hello, world";
+
     }
 
     @PostMapping("/add-data")

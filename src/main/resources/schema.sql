@@ -1,6 +1,7 @@
-CREATE TABLE test_table
+CREATE TABLE user_account
 (
-    test_id SERIAL PRIMARY KEY,
-    first_name VARCHAR(50),
-    last_name VARCHAR(50)
+    user_account_id SERIAL PRIMARY KEY,
+    username VARCHAR(30),
+    email_address VARCHAR(50),
+    birth_date DATE
 );
