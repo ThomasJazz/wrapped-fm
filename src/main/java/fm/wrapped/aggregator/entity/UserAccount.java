@@ -1,11 +1,15 @@
 package fm.wrapped.aggregator.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class UserAccount {
+
     String userAccountId;
     String username;
     String emailAddress;
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="PST")
     Date birthDate;
 
     public String getUserAccountId() {

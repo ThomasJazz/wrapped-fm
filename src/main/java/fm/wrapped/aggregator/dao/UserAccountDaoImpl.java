@@ -20,15 +20,15 @@ public class UserAccountDaoImpl implements UserAccountDao{
     // Using a jdbc query template to insert a new record to the user_account db table
     @Override
     public void insertUserAccount(UserAccount user) {
-        final String sql = "INSERT INTO user_account(username, email_address, birth_date)" +
-                " VALUES (:username, :email_address, :birth_date)";
+        final String sql = "INSERT INTO userAccount(username, emailAddress, birthDate)" +
+                " VALUES (:username, :emailAddress, :birthDate)";
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("username", user.getUsername())
-                .addValue("email_address", user.getEmailAddress())
-                .addValue("birth_date", user.getBirthDate());
+                .addValue("emailAddress", user.getEmailAddress())
+                .addValue("birthDate", user.getBirthDate());
 
-
+        template.update(sql, param, holder);
     }
 
     @Override

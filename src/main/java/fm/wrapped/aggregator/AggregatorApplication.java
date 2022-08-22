@@ -9,17 +9,13 @@ import org.springframework.beans.factory.annotation.Value;
 @SpringBootApplication
 public class AggregatorApplication implements ApplicationRunner {
 
-	@Value("${env.username}")
-	String username;
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(AggregatorApplication.class, args);
 	}
 
 	@Override
 	public void run(ApplicationArguments args) {
-		System.out.print("Username: " + username);
+
 	}
 
 }

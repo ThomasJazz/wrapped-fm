@@ -4,29 +4,28 @@ package fm.wrapped.aggregator.controller;
 import fm.wrapped.aggregator.entity.*;
 
 // 3rd party imports
+import fm.wrapped.aggregator.service.UserAccountService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
+
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/internal/user")
 public class UserController {
+    @Resource
+    UserAccountService userAccountService;
 
+    // TODO: Have this return the created userAccountID
     @PostMapping("/add")
-    public void addUserAccount(@RequestBody UserAccount account)
+    public void addUserAccount(@RequestBody UserAccount user)
     {
-
+        userAccountService.insertUserAccount(user);
     }
 
-    @PostMapping("/add-data")
-    public void addData(@RequestBody SpotifyListen listen)
+    @PutMapping("/update")
+    public void updateUserAccount(@RequestBody UserAccount user)
     {
-
+        userAccountService.updateUserAccount(user);
     }
-
-    @PutMapping("/add-data")
-    public void updateSomething(@RequestBody SpotifyListen listen)
-    {
-
-    }
-
-
 }
