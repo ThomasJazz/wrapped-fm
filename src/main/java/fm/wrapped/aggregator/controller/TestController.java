@@ -1,6 +1,6 @@
 /*
 Summary:
-    Example of a controller you can use
+    Explos
 Author: Noctsol
 CreatedDate: 2022-08-21
 
@@ -33,7 +33,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 
 
 @RestController
-@RequestMapping(value = "/example-path",
+@RequestMapping(value = "/test",
     // method = { RequestMethod.GET, RequestMethod.POST },
     produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -41,7 +41,7 @@ import io.github.cdimascio.dotenv.Dotenv;
 // @RequestMapping(value = "/user/revert", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON)
 // public ResponseEntity<UserResponse> revertUserData(@RequestParam(value = "userName") String userName){
 
-public class ExampleController {
+public class TestController {
 
     // Get Call that requires the paramer of username
     @GetMapping(value = "ex-get")
@@ -65,24 +65,4 @@ public class ExampleController {
         return myClass;
     }
 
-
-    @GetMapping(value = "ex-text")
-    public String ApiCallingApi() {
-        HttpClient client = HttpClient.newHttpClient();
-        System.out.println("1");
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("http://localhost:8081/example-path/ex-get?username=hello"))
-            .GET()
-            .build();
-
-        System.out.println("2");
-        client.sendAsync(request, BodyHandlers.ofString())
-            .thenApply(HttpResponse::body)
-            .thenAccept(System.out::println)
-            .join();System.out.println("2");
-
-        System.out.println("3");
-
-        return "hello";
-    }
 }

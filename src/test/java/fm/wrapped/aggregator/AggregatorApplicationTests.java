@@ -10,4 +10,5 @@ class AggregatorApplicationTests {
 	void contextLoads() {
 	}
 
+
 }
