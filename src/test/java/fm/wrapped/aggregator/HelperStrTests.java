@@ -1,73 +1,42 @@
 package fm.wrapped.aggregator;
 
-
-
 /*
-Summary:
-    Easy Http Client made to make API calls.
-Author: Noctsol
-CreatedDate: 2022-08-22
+    Summary:
+        Easy Http Client made to make API calls.
 
+    Author: Noctsol
+    CreatedDate: 2022-08-22
 */
 
 
-
-/********************* PREBUILT PACKAGES *********************/
+/********************* JAVA DEFAULT CLASSES *********************/
 // Java Native Data Structures
-import java.util.Map;           // Map<type,type>
-import java.util.Map.Entry;     // Entry<Type.Type> items inside Map
+
 import java.util.List;          // Map<type,type>
 import java.util.Arrays;        // List<?>
 
-
-// Java Helper Packages
-import java.time.Duration;      // Imports Duration functionality
-
-// Spring Boot
-// import org.springframework.http.MediaType;
-import org.springframework.scheduling.annotation.Async;                 // Import the @Async tag functionallity
-// import org.springframework.beans.factory.annotation.Value;           // @Value
-import org.springframework.scheduling.annotation.EnableAsync;           // Allows you to @EnableAsync
-import org.springframework.web.util.UriComponentsBuilder;               // UriComponentsBuilder - Builds URL
-
-import fm.wrapped.aggregator.lib.Helper.Str;
-
-import org.springframework.boot.autoconfigure.SpringBootApplication;    // Allows you to @SpringBootApplication
+// UnitTesting
 import org.junit.jupiter.api.Test;
-import org.springframework.util.Assert.*;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.springframework.boot.test.context.SpringBootTest;
 
-// Java Http .net Http Client
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.BodyPublisher;
-import java.net.http.HttpRequest.Builder;
-// import java.net.http.HttpResponse.BodyHandler;
-import java.net.http.HttpResponse.BodyHandlers;
-import java.net.http.HttpResponse;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.net.URI;
-
-
-
-/********************* INTERNAL PACKAGES *********************/
-
+/********************* * LOCAL LIBRARIES *********************/
+import fm.wrapped.aggregator.lib.Helper.Str;
 
 
 /********************* PUBLIC PACKAGES *********************/
 
 
+/*-------------------------------------------------------------- CLASS --------------------------------------------------------------*/
 
 @SpringBootTest
 class HelperStrTests {
-
+    /******************************************* TESTS *******************************************/
 
     // Test Helper.Str Join functionality with no delimiter
     @Test
-    void shouldJoinListOfStringsWithNoDelimiter() {
+    void shouldJoin_ListOfStrings_WithNoDelimiter() {
         String expectedString = "";
 
         // Initializing a list
@@ -85,7 +54,7 @@ class HelperStrTests {
 
     // Test Helper.Str Join functionality with delimited
     @Test
-    void shouldJoinListOfStringsWithDelimiter() {
+    void shouldJoin_ListOfStrings_WithDelimiter() {
         String expectedString = "i-am-joined";
 
         // Initializing a list
@@ -96,6 +65,4 @@ class HelperStrTests {
 
         assertEquals(expectedString, resultString);
     }
-
-
 }

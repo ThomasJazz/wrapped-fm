@@ -1,6 +1,5 @@
 package fm.wrapped.aggregator.lib.Helper;
 
-
 /*
     Summary:
         Method to make dealing with strings more easily. Unfortunately, Java didn't have some of this written out.
@@ -9,21 +8,20 @@ package fm.wrapped.aggregator.lib.Helper;
 
 */
 
+/*-------------------------------------------------------------- IMPORTS --------------------------------------------------------------*/
 
-/********************* PREBUILT PACKAGES *********************/
+/********************* JAVA DEFAULT CLASSES *********************/
 // Java Native Data Structures
 import java.util.Collection;
 
 
-/********************* INTERNAL PACKAGES *********************/
+/********************* * LOCAL LIBRARIES *********************/
 /********************* PUBLIC PACKAGES *********************/
 
 
-
+/*-------------------------------------------------------------- CLASS --------------------------------------------------------------*/
 public final class Str {
-
-    private Str (){}
-
+    /******************************************* PUBLIC METHODS *******************************************/
     // General Join Function for any Collection of items
     public static String join(Collection<?> items, String delimiter) {
 

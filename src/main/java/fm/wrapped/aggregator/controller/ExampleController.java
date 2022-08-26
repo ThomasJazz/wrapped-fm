@@ -8,7 +8,7 @@ CreatedDate: 2022-08-21
 
 
 
-/********************* INTERNAL PACKAGES *********************/
+/********************* * LOCAL LIBRARIES *********************/
 package fm.wrapped.aggregator.controller;
 
 
@@ -20,7 +20,7 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.net.http.HttpResponse;
 
 import org.springframework.http.MediaType;
-/********************* PREBUILT PACKAGES *********************/
+/********************* JAVA DEFAULT CLASSES *********************/
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,15 +1,13 @@
 package fm.wrapped.aggregator.lib.Http;
 
-
-
 /*
     Summary:
         Prepared Request to contain all prepared request info
     Author: Noctsol
     CreatedDate: 2022-08-22
-
 */
 
+/*-------------------------------------------------------------- IMPORTS --------------------------------------------------------------*/
 
 /********************* JAVA DEFAULT PACKAGES *********************/
 // Java Native Data Structures
@@ -20,7 +18,6 @@ import java.util.List;          // Map<type,type>
 
 // Java.net.Http
 import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.Builder;
 
 // Sprintboot
 import org.springframework.web.util.UriComponentsBuilder;
@@ -30,12 +27,19 @@ import org.springframework.web.util.UriComponentsBuilder;
 import fm.wrapped.aggregator.lib.Helper.Str;
 
 
+
+/*-------------------------------------------------------------- CLASS --------------------------------------------------------------*/
+
 public class PreparedRequest {
+    /******************************************* PROPERTIES/ATTRIBUTES *******************************************/
     public String Uri;
     public Map<String, String> Headers;
     public Map<String, String> Params;
     public String Content;
+    public long TimeoutMilliseconds;
 
+
+    /******************************************* CONSTRUCTORS *******************************************/
     public PreparedRequest(){}
 
     public PreparedRequest(HttpRequest myRequest)
@@ -60,8 +64,9 @@ public class PreparedRequest {
 
         this.Headers = myActualHeaders;
 
-        // Getting Size of Request
-        myRequest.timeout();
+        // Getting Timeout of Request
+        // Kinda annoying - Had to convert Optional<Duration> to Duration to milliseconds
+        this.TimeoutMilliseconds = myRequest.timeout().get().toMillis();
 
     }
 }

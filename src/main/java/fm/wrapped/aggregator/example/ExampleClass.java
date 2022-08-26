@@ -8,14 +8,14 @@ CreatedDate: 2022-08-21
 
 
 
-/********************* INTERNAL PACKAGES *********************/
+/********************* * LOCAL LIBRARIES *********************/
 package fm.wrapped.aggregator.example;
 
 
 /********************* PUBLIC PACKAGES *********************/
 
 
-/********************* PREBUILT PACKAGES *********************/
+/********************* JAVA DEFAULT CLASSES *********************/
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 

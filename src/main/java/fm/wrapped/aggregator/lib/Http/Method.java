@@ -1,15 +1,14 @@
-/*
-Summary:
-    Enum that defines what Methods are valid to use to make API calls
-Author: Noctsol
-CreatedDate: 2022-08-22
-
-*/
-
-
-
 package fm.wrapped.aggregator.lib.Http;
 
+/*
+    Summary:
+        Enum that defines what HTTP Methods are valid to use to make API calls for the Client Class.
+
+    Author: Noctsol
+    CreatedDate: 2022-08-22
+*/
+
+/*-------------------------------------------------------------- CLASS --------------------------------------------------------------*/
 public enum Method {
     GET,
     POST,
