@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="console">
+            <JsonLayout compact="true" eventEol="true" stacktraceAsString="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd'T'HH:mm:ss.SSSZ}" />
+            </JsonLayout>
+        </Console>
+
+        <Console name="logger" target="SYSTEM_OUT">
+            <PatternLayout pattern="%style{%d{ISO8601}}{bright,blue} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%X{loggingClass}}{bright,yellow} %notEmpty{userId:%X{userId}} %notEmpty{application-synonym:%X{appSynonym}} %notEmpty{tenantId:%X{tenantId}} %notEmpty{orgs:%X{orgs}} %notEmpty{traceId:%X{traceId}} : %msg%n%throwable" />
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="WARN">
+            <AppenderRef ref="console" />
+        </Root>
+
+        <Logger name="com.cbre" level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
+        <Logger name="fm.wrapped.musicgator.annotation.LogMethodExecutionAspect" level="INFO" additivity="false">
+            <AppenderRef ref="logger" />
+        </Logger>
+
+    </Loggers>
+
+</Configuration>
