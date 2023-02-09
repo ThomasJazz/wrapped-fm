@@ -7,9 +7,12 @@ import fm.wrapped.musicgator.dto.UserAccountDTO;
 import fm.wrapped.musicgator.service.UserAccountService;
 // import org.springframework.beans.factory.annotation.Value;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,15 +29,28 @@ public class UserAccountController {
             @ApiResponse(responseCode = "500", description = "Custom runtime errors")})
     @PostMapping(path="/user")
     @Operation(summary = "blah", description = "test")
-    public void createUserAccount(@RequestBody UserAccountDTO user)
+    public ResponseEntity<UserAccountDTO> createUserAccount(@RequestBody UserAccountDTO user)
     {
-        userAccountService.createUserAccount(user);
+        ResponseEntity<UserAccountDTO> response = null;
+        response = new ResponseEntity<>(userAccountService.createUserAccount(user), HttpStatus.CREATED);
+
+        return response;
     }
 
-    @PutMapping("/update")
+    @PutMapping(path="/user/{userAccountId}")
+    @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Service Request Created"),
+            @ApiResponse(responseCode = "401", description = "Unauthorized"),
+            @ApiResponse(responseCode = "403", description = "Forbidden"),
+            @ApiResponse(responseCode = "404", description = "Resource Not Found"),
+            @ApiResponse(responseCode = "500", description = "Custom runtime errors")})
     @Operation(summary = "blah", description = "test")
-    public void updateUserAccount(@RequestBody UserAccountDTO user)
+    public ResponseEntity<UserAccountDTO> updateUserAccount(@RequestBody UserAccountDTO user,
+                                  @Parameter(name = "userAccountId", required = true) @PathVariable("userAccountId") String userAccountId)
     {
-        userAccountService.updateUserAccount(user);
+        ResponseEntity<UserAccountDTO> response = null;
+        response = new ResponseEntity<>(
+                userAccountService.updateUserAccount(user, userAccountId), HttpStatus.CREATED);
+
+        return response;
     }
 }

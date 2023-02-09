@@ -14,14 +14,15 @@ import java.util.UUID;
 @Getter
 @Setter
 public class UserAccountDTO {
-
+    @JsonProperty("id")
     private String id;
 
     @JsonProperty("username")
     private String username;
 
-    @JsonProperty("email_address")
+    @JsonProperty("emailAddress")
     private String emailAddress;
 
+    @JsonProperty("birthDate")
     private String birthDate;
 }

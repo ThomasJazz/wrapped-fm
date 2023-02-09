@@ -9,7 +9,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -27,7 +26,7 @@ public class UserAccountEntity {
     @GeneratedValue(generator = "UUID")
     @Column(name="id")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID userId;
+    private UUID id;
 
     @JsonProperty
     @Column(name = "username")
@@ -38,9 +37,9 @@ public class UserAccountEntity {
     private String emailAddress;
 
     @JsonProperty
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="PST")
+    @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
     @Column(name="birth_date")
-    private LocalDate birthDate;
+    private LocalDateTime birthDate;
 
     @UpdateTimestamp
     @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)

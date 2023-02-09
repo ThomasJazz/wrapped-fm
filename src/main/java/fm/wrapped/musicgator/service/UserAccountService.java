@@ -5,5 +5,6 @@ import fm.wrapped.musicgator.entity.UserAccountEntity;
 
 public interface UserAccountService {
     UserAccountDTO createUserAccount(UserAccountDTO user);
-    UserAccountDTO updateUserAccount(UserAccountDTO user);
+
+    UserAccountDTO updateUserAccount(UserAccountDTO userAccountDTO, String userId);
 }

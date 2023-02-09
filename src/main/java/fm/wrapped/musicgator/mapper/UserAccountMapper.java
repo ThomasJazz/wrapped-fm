@@ -3,11 +3,13 @@ package fm.wrapped.musicgator.mapper;
 import fm.wrapped.musicgator.common.Constants;
 import fm.wrapped.musicgator.dto.UserAccountDTO;
 import fm.wrapped.musicgator.entity.UserAccountEntity;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 @Component
@@ -23,10 +25,22 @@ public class UserAccountMapper {
 //    }
 
     public void convertDtoToEntity(UserAccountDTO dto, UserAccountEntity entity) {
-        entity.setUserId(UUID.fromString(dto.getId()));
+        if(StringUtils.isNotEmpty(dto.getId()))
+            entity.setId(UUID.fromString(dto.getId().trim()));
+
         entity.setUsername(dto.getUsername());
         entity.setEmailAddress(dto.getEmailAddress());
-        entity.setBirthDate(Objects.isNull(dto.getBirthDate()) ? null
-                : LocalDate.parse(dto.getBirthDate(), dateFormatter));
+        entity.setBirthDate(StringUtils.isEmpty(dto.getBirthDate()) ? null :
+            LocalDateTime.parse(dto.getBirthDate(), dateFormatter));
+    }
+
+    public void convertEntityToDto(UserAccountDTO dto, UserAccountEntity entity) {
+        if(!Objects.isNull(entity.getId()))
+            dto.setId(entity.getId().toString());
+
+        dto.setUsername(entity.getUsername());
+        dto.setEmailAddress(entity.getEmailAddress());
+        dto.setBirthDate(Objects.isNull(entity.getBirthDate()) ? null :
+                entity.getBirthDate().toString());
     }
 }

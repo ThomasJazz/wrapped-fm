@@ -8,6 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Slf4j
 @Service
 public class UserAccountServiceImpl implements UserAccountService {
@@ -22,14 +25,22 @@ public class UserAccountServiceImpl implements UserAccountService {
         UserAccountEntity userAccountEntity = new UserAccountEntity();
 
         userAccountMapper.convertDtoToEntity(userAccountDTO, userAccountEntity);
-        userAccountRepository.save(userAccountEntity);
+        userAccountEntity = userAccountRepository.save(userAccountEntity);
 
+        userAccountMapper.convertEntityToDto(userAccountDTO, userAccountEntity);
         return userAccountDTO;
     }
 
     @Override
-    public UserAccountDTO updateUserAccount(UserAccountDTO user) {
-        return null;
+    public UserAccountDTO updateUserAccount(UserAccountDTO userAccountDTO, String userId) {
+        UserAccountEntity userAccountEntity = userAccountRepository.findById(UUID.fromString(userId)).orElseThrow();
+        userAccountDTO.setId(userId);
+
+        userAccountMapper.convertDtoToEntity(userAccountDTO, userAccountEntity);
+        userAccountEntity = userAccountRepository.save(userAccountEntity);
+
+        userAccountMapper.convertEntityToDto(userAccountDTO, userAccountEntity);
+        return userAccountDTO;
     }
 
 
