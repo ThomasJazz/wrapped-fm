@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS spotify_listen;
 DROP TABLE IF EXISTS user_account;
 
 CREATE TABLE user_account (
-  id UUID NOT NULL,
+   id UUID NOT NULL,
    username VARCHAR(255),
    email_address VARCHAR(255),
    birth_date TIMESTAMP WITHOUT TIME ZONE,

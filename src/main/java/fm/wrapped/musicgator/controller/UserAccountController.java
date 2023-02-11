@@ -5,7 +5,6 @@ import fm.wrapped.musicgator.dto.UserAccountDTO;
 
 // 3rd party imports
 import fm.wrapped.musicgator.service.UserAccountService;
-// import org.springframework.beans.factory.annotation.Value;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -28,7 +27,7 @@ public class UserAccountController {
             @ApiResponse(responseCode = "404", description = "Resource Not Found"),
             @ApiResponse(responseCode = "500", description = "Custom runtime errors")})
     @PostMapping(path="/user")
-    @Operation(summary = "blah", description = "test")
+    @Operation(summary = "Create a new user account", description = "test")
     public ResponseEntity<UserAccountDTO> createUserAccount(@RequestBody UserAccountDTO user)
     {
         ResponseEntity<UserAccountDTO> response = null;
@@ -48,6 +47,7 @@ public class UserAccountController {
                                   @Parameter(name = "userAccountId", required = true) @PathVariable("userAccountId") String userAccountId)
     {
         ResponseEntity<UserAccountDTO> response = null;
+
         response = new ResponseEntity<>(
                 userAccountService.updateUserAccount(user, userAccountId), HttpStatus.CREATED);
 

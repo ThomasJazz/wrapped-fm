@@ -3,7 +3,7 @@
 - [Trello tasks](https://trello.com/b/iajPz5r5/wrappedfm-dev)
 
 ## API Docs
-[Swagger API Docs](http://localhost:8080/api/v2/api-docs)
+[Swagger API Docs](http://localhost:8081/swagger-ui/index.html)
 
 
 ## Environment Setup
@@ -13,6 +13,9 @@
 ### Docker Desktop
 - [Download Docker Desktop](https://docs.docker.com/desktop/install/windows-install/)
 - [Download WSL 2 Linux Kernel](https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
+
+### Postgres GUI
+- PGAdmin 14
 
 ### Flyway
 - [Writing flyway scripts](https://flywaydb.org/documentation/database/postgresql)
