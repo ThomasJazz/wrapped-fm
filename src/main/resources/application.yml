@@ -1,0 +1,102 @@
+# Tomcat webserver port
+server:
+  port: 8081
+
+#springdoc:
+#  api-docs:
+#    path: /music-gator/api/v1/api-docs
+#  paths-to-match: /music-gator/api/v1/**
+
+# Spring configuration
+spring:
+  profiles:
+    active: development
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        session:
+          events:
+            log:
+              LOG_QUERIES_SLOWER_THAN_MS: 50
+    hibernate:
+      ddl-auto: validate
+
+management:
+#  endpoints:
+#    web:
+#      base-path: /music-gator
+#      exposure:
+#        include: 'info,health,bindings'
+  endpoint:
+    health:
+      show-details: "always"
+      probes:
+        enabled: "true"
+  health:
+    db:
+      enabled: "true"
+    livenessstate:
+      enabled: "true"
+    readinessstate:
+      enabled: "true"
+
+logging:
+  config: ./log4j2-dev.xml
+  level:
+    org.apache.kafka: WARN
+
+flyway:
+  defaultSchema: mg
+
+---
+environment: development
+
+spring:
+  profiles: development
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/musicgator?currentSchema=mg
+    username: postgres
+    password: postgres
+    continue-on-error: true
+    hikari:
+      maximumPoolSize: 5
+      minimumIdle: 3
+      idleTimeout: 600000
+      connectionTimeout: 30000
+      maxLifetime: 1800000
+      leakDetectionThreshold: 60000
+      pool-name: wrapped_music_gator_hikaripool
+
+logging:
+  config: ./log4j2-dev.xml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+
+spring:
+  profiles: test
+  flyway:
+    enabled: false
+
+pactenabled: false
+
+---
+spring:
+  profiles: production
+
+logging:
+  config: ./log4j2-prod.xml

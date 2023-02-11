@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%style{%d{ISO8601}}{grey} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow} %notEmpty{userId:%X{userId}} %notEmpty{application-synonym:%X{appSynonym}} %notEmpty{tenantId:%X{tenantId}} %notEmpty{orgs:%X{orgs}} %notEmpty{traceId:%X{traceId}}  : %msg%n%throwable" />
+        </Console>
+
+        <Console name="logger" target="SYSTEM_OUT">
+            <PatternLayout pattern="%style{%d{ISO8601}}{bright,blue} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%X{loggingClass}}{bright,yellow} %notEmpty{userId:%X{userId}} %notEmpty{application-synonym:%X{appSynonym}} %notEmpty{tenantId:%X{tenantId}} %notEmpty{orgs:%X{orgs}} %notEmpty{traceId:%X{traceId}} : %msg%n%throwable" />
+        </Console>
+    </Appenders>
+
+    <Loggers>
+        <Root level="INFO" additivity="false">
+            <AppenderRef ref="console" />
+        </Root>
+
+        <Logger name="com.cbre" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+
+        <Logger name="fm.wrapped.musicgator.annotation.LogMethodExecutionAspect" level="DEBUG" additivity="false">
+            <AppenderRef ref="logger" />
+        </Logger>
+
+    </Loggers>
+
+</Configuration>
