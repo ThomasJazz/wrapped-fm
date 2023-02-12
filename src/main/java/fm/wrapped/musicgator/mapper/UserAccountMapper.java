@@ -24,6 +24,7 @@ public class UserAccountMapper {
         entity.setEmailAddress(dto.getEmailAddress());
         entity.setBirthDate(StringUtils.isEmpty(dto.getBirthDate()) ? null :
             LocalDateTime.parse(dto.getBirthDate(), dateFormatter));
+        entity.setPassword(dto.getPassword());
     }
 
     public void convertEntityToDto(UserAccountDTO dto, UserAccountEntity entity) {
@@ -34,5 +35,6 @@ public class UserAccountMapper {
         dto.setEmailAddress(entity.getEmailAddress());
         dto.setBirthDate(Objects.isNull(entity.getBirthDate()) ? null :
                 entity.getBirthDate().toString());
+        dto.setPassword(entity.getPassword());
     }
 }

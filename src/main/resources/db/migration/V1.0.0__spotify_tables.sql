@@ -6,6 +6,7 @@ CREATE TABLE user_account (
    username VARCHAR(255),
    email_address VARCHAR(255),
    birth_date TIMESTAMP WITHOUT TIME ZONE,
+   password_hash
    modified_date TIMESTAMP WITHOUT TIME ZONE,
    create_date TIMESTAMP WITHOUT TIME ZONE,
    CONSTRAINT pk_user_account PRIMARY KEY (id)

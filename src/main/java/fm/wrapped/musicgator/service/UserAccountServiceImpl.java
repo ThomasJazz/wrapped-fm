@@ -6,6 +6,7 @@ import fm.wrapped.musicgator.mapper.UserAccountMapper;
 import fm.wrapped.musicgator.repository.UserAccountRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -17,11 +18,15 @@ public class UserAccountServiceImpl implements UserAccountService {
     private UserAccountRepository userAccountRepository;
 
     @Autowired
-    UserAccountMapper userAccountMapper;
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserAccountMapper userAccountMapper;
 
     @Override
     public UserAccountDTO createUserAccount(UserAccountDTO userAccountDTO) {
         UserAccountEntity userAccountEntity = new UserAccountEntity();
+        userAccountDTO.setPassword(passwordEncoder.encode(userAccountDTO.getPassword()));
 
         userAccountMapper.convertDtoToEntity(userAccountDTO, userAccountEntity);
         userAccountEntity = userAccountRepository.save(userAccountEntity);

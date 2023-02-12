@@ -1,31 +1,16 @@
-# music-gator-springboot
-## Links
+# wrapped-fm
 - [Trello tasks](https://trello.com/b/iajPz5r5/wrappedfm-dev)
-
-## API Docs
-[Swagger API Docs](http://localhost:8081/swagger-ui/index.html)
-
+- [Swagger API Docs](http://localhost:8081/swagger-ui/index.html)
 
 ## Environment Setup
 ### Java
-- [Java 17 SDK](https://www.oracle.com/java/technologies/downloads/#jdk17-windows)
-
-### Docker Desktop
-- [Download Docker Desktop](https://docs.docker.com/desktop/install/windows-install/)
-- [Download WSL 2 Linux Kernel](https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
-
-### Postgres GUI
-- PGAdmin 14
+- [JDK 11.0.15](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html#license-lightbox)
 
 ### Flyway
 - [Writing flyway scripts](https://flywaydb.org/documentation/database/postgresql)
 
-### Apache Kafka Commands
-- Start **Apache** Web Server
-  > net start
-
-- Stop **Apache** Web Server [Run cmd/other terminal as administrator]
-  > TASKKILL /F /IM httpd.exe /T
+### Postgres GUI
+- PGAdmin 14
 
 ### Postgres Commands
 - Start Postgres server [Must do this before any of the below commands will work]:
