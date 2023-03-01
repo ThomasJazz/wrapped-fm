@@ -1,6 +1,6 @@
 package fm.wrapped.musicgator.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -40,6 +40,10 @@ public class UserAccountEntity {
     @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
     @Column(name="birth_date")
     private LocalDateTime birthDate;
+
+    @JsonInclude
+    @Column(name="password")
+    private String password;
 
     @UpdateTimestamp
     @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)

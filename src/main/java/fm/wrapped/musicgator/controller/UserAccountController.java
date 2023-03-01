@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,12 +27,12 @@ public class UserAccountController {
             @ApiResponse(responseCode = "403", description = "Forbidden"),
             @ApiResponse(responseCode = "404", description = "Resource Not Found"),
             @ApiResponse(responseCode = "500", description = "Custom runtime errors")})
+    @Validated
     @PostMapping(path="/user")
     @Operation(summary = "Create a new user account", description = "test")
-    public ResponseEntity<UserAccountDTO> createUserAccount(@RequestBody UserAccountDTO user)
-    {
-        ResponseEntity<UserAccountDTO> response = null;
-        response = new ResponseEntity<>(userAccountService.createUserAccount(user), HttpStatus.CREATED);
+    public ResponseEntity<UserAccountDTO> createUserAccount(@RequestBody UserAccountDTO user) {
+        ResponseEntity<UserAccountDTO> response = new ResponseEntity<>(userAccountService.createUserAccount(user),
+                HttpStatus.CREATED);
 
         return response;
     }
@@ -44,13 +45,19 @@ public class UserAccountController {
             @ApiResponse(responseCode = "500", description = "Custom runtime errors")})
     @Operation(summary = "blah", description = "test")
     public ResponseEntity<UserAccountDTO> updateUserAccount(@RequestBody UserAccountDTO user,
-                                  @Parameter(name = "userAccountId", required = true) @PathVariable("userAccountId") String userAccountId)
-    {
-        ResponseEntity<UserAccountDTO> response = null;
-
-        response = new ResponseEntity<>(
+                                  @Parameter(name = "userAccountId", required = true)
+                                  @PathVariable("userAccountId") String userAccountId) {
+        ResponseEntity<UserAccountDTO> response = new ResponseEntity<>(
                 userAccountService.updateUserAccount(user, userAccountId), HttpStatus.CREATED);
 
         return response;
+    }
+
+    @GetMapping(path="/user/{userAccountId}")
+    public ResponseEntity<Boolean> checkPasswordMatch(
+            @Parameter(name="password", required = true) String password,
+            @Parameter(name = "userAccountId", required = true)
+            @PathVariable("userAccountId") String userAccountId) {
+        return null;
     }
 }
